@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/config/site";
+import { theme } from "@/config/theme";
 
 export const alt = siteConfig.seo.ogImageAlt;
 export const size = { width: 1200, height: 630 };
@@ -19,8 +20,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(145deg, #20543B 0%, #1a4530 55%, #27251F 100%)",
-          color: "#FDFCF8",
+          background: `linear-gradient(145deg, ${theme.colors.forest} 0%, ${theme.colors.forestDark} 55%, ${theme.colors.ink} 100%)`,
+          color: theme.colors.white,
           fontFamily: "system-ui, sans-serif",
           padding: 48,
           textAlign: "center",
@@ -39,8 +40,8 @@ export default function OpenGraphImage() {
             fontSize: 22,
             padding: "12px 28px",
             borderRadius: 999,
-            background: "#FDFCF8",
-            color: "#20543B",
+            background: theme.colors.white,
+            color: theme.colors.forest,
             fontWeight: 700,
           }}
         >

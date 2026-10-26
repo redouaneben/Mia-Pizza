@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/config/site";
+import { theme } from "@/config/theme";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
@@ -17,8 +18,8 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#20543B",
-          color: "#FDFCF8",
+          background: theme.colors.forest,
+          color: theme.colors.white,
           fontSize: 20,
           fontWeight: 800,
           fontFamily: "system-ui, sans-serif",

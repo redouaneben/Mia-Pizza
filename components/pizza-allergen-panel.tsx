@@ -9,7 +9,7 @@ import {
   ALLERGEN_DISCLAIMER,
   getPizzaAllergenTags,
 } from "@/data/allergens";
-import { miaButtonClass } from "@/lib/mia-button";
+import { restoButtonClass } from "@/lib/resto-button";
 import { cn } from "@/lib/utils";
 
 export function PizzaAllergenPanel({
@@ -90,7 +90,7 @@ export function PizzaAllergenPanel({
                 aria-label="Fermer"
                 className={cn(
                   "hidden shrink-0 md:inline-flex",
-                  miaButtonClass("outline", "compact"),
+                  restoButtonClass("outline", "compact"),
                   "h-12 w-12 rounded-full p-0 normal-case tracking-normal"
                 )}
               >
@@ -119,7 +119,7 @@ export function PizzaAllergenPanel({
                 ref={mobileCloseRef}
                 type="button"
                 onClick={onClose}
-                className={cn("w-full", miaButtonClass("command", "md"))}
+                className={cn("w-full", restoButtonClass("command", "md"))}
               >
                 Retour
               </button>

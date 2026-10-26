@@ -9,6 +9,10 @@ export const siteConfig = {
   /** Nom légal / mentions (à compléter avant facturation) */
   legalName: "Mia Pizza",
   tagline: "Pizzeria artisanale",
+  pickupLabel: "PIZZA À EMPORTER",
+  heroTagline:
+    "Pizzeria de proximité — artisanale, conviviale et traditionnelle.",
+  footerLine: "Pizza à emporter",
   locale: "fr_FR" as const,
   language: "fr" as const,
 

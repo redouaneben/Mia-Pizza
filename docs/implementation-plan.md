@@ -24,6 +24,14 @@
 - [x] `config/site.ts`, `sitemap.ts`, `robots.ts`, OG/icon (`app/opengraph-image.tsx`, `app/icon.tsx`)  
 - [ ] Analytics — events `click_tel`, `view_menu`
 
+## Phase 2b — Blueprint (Session C) ✅
+
+- [x] `config/theme.ts`, `config/hero-slides.ts`  
+- [x] `lib/resto-button.ts` (+ alias `lib/mia-button.ts`)  
+- [x] `lib/fonts.ts`, `lib/page-shell.ts`  
+- [x] Accueil → `components/home/home-page.tsx`, `app/page.tsx` mince  
+- [x] `docs/NEW-CLIENT.md`  
+
 ## Phase 3 — v2 (non engagé)
 
 - [ ] Drawer pizza  
