@@ -11,12 +11,14 @@
 - [x] Extraire horaires → `data/hours.ts`  
 - [x] SEO : title, description, `lang="fr"`, Open Graph — `app/layout.tsx`  
 - [x] Build vert (retrait composant calendar inutilisé)  
-- [ ] Smoke test mobile (tel, menu, Maps) — manuel  
+- [ ] Smoke test mobile — `docs/smoke-test-checklist.md`  
 - [ ] Définir `NEXT_PUBLIC_SITE_URL` en prod (Vercel) — voir `config/site.ts`
 
 ## Phase 2 — Backlog produit
 
 - [x] Congés / travaux — `data/special-hours.ts` (`SPECIAL_PERIODS`)  
+- [x] Mentions légales + confidentialité — `config/legal.ts`, pages `/mentions-legales`, `/politique-de-confidentialite`  
+- [x] `docs/GUIDE-CLIENT.md`  
 - [ ] Marquee, avis Google  
 - [x] JSON-LD Restaurant — `lib/restaurant-json-ld.ts` + `config/site.ts`  
 - [x] `config/site.ts`, `sitemap.ts`, `robots.ts`, OG/icon (`app/opengraph-image.tsx`, `app/icon.tsx`)  

@@ -1,0 +1,88 @@
+import type { Metadata } from "next";
+
+import { legalConfig } from "@/config/legal";
+import { getFullAddress, siteConfig } from "@/config/site";
+import { LegalPageShell } from "@/components/legal-page-shell";
+
+export const metadata: Metadata = {
+  title: `Mentions légales | ${siteConfig.name}`,
+  description: `Mentions légales du site ${siteConfig.name}.`,
+  robots: { index: true, follow: true },
+};
+
+export default function MentionsLegalesPage() {
+  const { host } = legalConfig;
+
+  return (
+    <LegalPageShell title="Mentions légales">
+      <p className="text-sm text-[#27251F]/65">
+        Dernière mise à jour : {legalConfig.lastUpdated}
+      </p>
+
+      <section>
+        <h2>1. Éditeur du site</h2>
+        <p>
+          Le site {siteConfig.url} est édité par{" "}
+          <strong>{siteConfig.legalName}</strong>, {siteConfig.tagline}.
+        </p>
+        <ul>
+          <li>
+            Adresse : {getFullAddress()}
+          </li>
+          <li>Téléphone : {siteConfig.phone.display}</li>
+          <li>
+            Responsable de publication : {legalConfig.publisherName} (
+            {legalConfig.publisherRole})
+          </li>
+          <li>SIRET : {legalConfig.siret}</li>
+          {legalConfig.rcs.startsWith("[") ? null : (
+            <li>RCS : {legalConfig.rcs}</li>
+          )}
+          <li>Contact : {legalConfig.contactEmail}</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. Hébergement</h2>
+        <p>
+          Le site est hébergé par {host.name}, {host.address} (
+          <a href={host.website} target="_blank" rel="noopener noreferrer">
+            {host.website}
+          </a>
+          ).
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Propriété intellectuelle</h2>
+        <p>
+          L’ensemble des éléments du site (textes, visuels, charte graphique,
+          structure) est protégé par le droit d’auteur. Toute reproduction non
+          autorisée est interdite.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Données & cartographie</h2>
+        <p>
+          Une carte Google Maps peut être intégrée sur le site. Son utilisation
+          est soumise aux conditions de Google. Voir la{" "}
+          <a href="/politique-de-confidentialite">
+            politique de confidentialité
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Limitation de responsabilité</h2>
+        <p>
+          Les informations (carte, prix, horaires, allergènes) sont fournies à
+          titre indicatif. En cas d’allergie ou de doute, contactez
+          l’établissement au {siteConfig.phone.display} ou sur place avant
+          commande.
+        </p>
+      </section>
+    </LegalPageShell>
+  );
+}

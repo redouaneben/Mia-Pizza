@@ -843,6 +843,18 @@ export default function Home() {
               >
                 Facebook
               </a>
+              <a
+                href="/mentions-legales"
+                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+              >
+                Mentions légales
+              </a>
+              <a
+                href="/politique-de-confidentialite"
+                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+              >
+                Confidentialité
+              </a>
             </nav>
             <p className="mt-6 text-xs text-[#27251F]/55 sm:text-sm">
               © 2026 Mia Pizza
