@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
+import { LegalContactLine } from "@/components/legal-contact-line";
+import { LegalPageShell } from "@/components/legal-page-shell";
 import { legalConfig } from "@/config/legal";
 import { getFullAddress, siteConfig } from "@/config/site";
-import { LegalPageShell } from "@/components/legal-page-shell";
 
 export const metadata: Metadata = {
   title: `Politique de confidentialité | ${siteConfig.name}`,
@@ -22,8 +23,8 @@ export default function PolitiqueConfidentialitePage() {
         <p>
           <strong>{siteConfig.legalName}</strong> — {getFullAddress()}.
           <br />
-          Contact : {legalConfig.contactEmail} — Tél.{" "}
-          {siteConfig.phone.display}.
+          Contact : <LegalContactLine /> — Tél.{" "}
+          <a href={siteConfig.phone.href}>{siteConfig.phone.display}</a>.
         </p>
       </section>
 
@@ -87,8 +88,8 @@ export default function PolitiqueConfidentialitePage() {
           ).
         </p>
         <p>
-          Pour exercer vos droits : {legalConfig.contactEmail} ou{" "}
-          {siteConfig.phone.display}.
+          Pour exercer vos droits : <LegalContactLine /> ou{" "}
+          <a href={siteConfig.phone.href}>{siteConfig.phone.display}</a>.
         </p>
       </section>
 

@@ -7,7 +7,10 @@ export const legalConfig = {
   publisherName: "[Nom du gérant — à compléter]",
   publisherRole: "Gérant",
 
-  /** Contact pour exercer vos droits (RGPD) et mentions */
+  /**
+   * Contact RGPD / mentions. Tant que la valeur commence par « [ », le site
+   * affiche le téléphone de `config/site.ts` à la place.
+   */
   contactEmail: "[email@exemple.fr — à compléter]",
 
   /** Identifiants entreprise (France) */

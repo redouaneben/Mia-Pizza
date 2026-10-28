@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 
+import { LegalContactLine } from "@/components/legal-contact-line";
+import { LegalPageShell } from "@/components/legal-page-shell";
 import { legalConfig } from "@/config/legal";
 import { getFullAddress, siteConfig } from "@/config/site";
-import { LegalPageShell } from "@/components/legal-page-shell";
+import {
+  formatLegalField,
+  isLegalPlaceholder,
+} from "@/lib/legal-contact";
 
 export const metadata: Metadata = {
   title: `Mentions légales | ${siteConfig.name}`,
@@ -31,14 +36,26 @@ export default function MentionsLegalesPage() {
           </li>
           <li>Téléphone : {siteConfig.phone.display}</li>
           <li>
-            Responsable de publication : {legalConfig.publisherName} (
-            {legalConfig.publisherRole})
+            Responsable de publication :{" "}
+            {formatLegalField(
+              legalConfig.publisherName,
+              `${siteConfig.legalName} (nom du gérant à renseigner dans config/legal.ts)`
+            )}{" "}
+            ({legalConfig.publisherRole})
           </li>
-          <li>SIRET : {legalConfig.siret}</li>
-          {legalConfig.rcs.startsWith("[") ? null : (
+          <li>
+            SIRET :{" "}
+            {formatLegalField(
+              legalConfig.siret,
+              "À renseigner dans config/legal.ts avant facturation"
+            )}
+          </li>
+          {!isLegalPlaceholder(legalConfig.rcs) ? (
             <li>RCS : {legalConfig.rcs}</li>
-          )}
-          <li>Contact : {legalConfig.contactEmail}</li>
+          ) : null}
+          <li>
+            Contact : <LegalContactLine />
+          </li>
         </ul>
       </section>
 

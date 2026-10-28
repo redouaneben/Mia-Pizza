@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { siteConfig } from "@/config/site";
 import { restaurantJsonLdString } from "@/lib/restaurant-json-ld";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: restaurantJsonLdString() }}
         />
         {children}
+        <CookieConsentBanner />
       </body>
     </html>
   );
