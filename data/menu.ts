@@ -171,7 +171,8 @@ export const PIZZAS_TOMATE: PizzaItem[] = [
   },
   {
     name: "Pizza du mois",
-    ingredients: "Consulter sur place ou Facebook",
+    ingredients:
+      "Base crème, jambon cru, copeaux de parmesan, touches de fromage frais, olives noires, filet de crème de balsamique",
     grande: 15.3,
     petite: null,
   },

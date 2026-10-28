@@ -28,6 +28,7 @@ import {
 } from "@/lib/resto-button";
 import { logoScript, sans } from "@/lib/fonts";
 import { PAGE_SHELL } from "@/lib/page-shell";
+import { PizzaDuMoisCard } from "@/components/home/pizza-du-mois-card";
 import { PizzaAllergenPanel } from "@/components/pizza-allergen-panel";
 import { HeaderBotaniqueBandeau, HerbPair } from "@/components/decor-ornament";
 import { getAddressLines, siteConfig } from "@/config/site";
@@ -701,26 +702,7 @@ export default function HomePage() {
                 affiché en boutique).
               </p>
             </div>
-            <div className="flex flex-col justify-between rounded-[2rem] border border-[#27251F]/10 bg-[#FDFCF8]/95 p-8 shadow-sm lg:p-10">
-              <div>
-                <Ribbon className="mb-5">Pizza du mois</Ribbon>
-                <p className="text-lg leading-relaxed text-[#27251F]/85 sm:text-xl">
-                  Rejoignez-nous sur Facebook pour découvrir la création du
-                  moment. Sur la carte imprimée :{" "}
-                  <strong className="font-bold">15,30 €</strong> (Grande) —{" "}
-                  <strong className="font-bold">Ø</strong> en Petite.
-                </p>
-              </div>
-              <a
-                href={FACEBOOK_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn("mt-8", restoButtonClass("social", "social"))}
-              >
-                <FacebookIcon className="h-4 w-4" />
-                {siteConfig.facebook.label} {siteConfig.name}
-              </a>
-            </div>
+            <PizzaDuMoisCard onAllergenClick={setAllergenPizza} />
           </div>
         </div>
       </section>

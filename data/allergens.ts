@@ -27,9 +27,7 @@ export const PIZZA_ALLERGENS: Record<string, string[]> = {
   "Fruits de mer": ["Gluten", "Lait", "Crustacés", "Mollusques"],
   "San Gennaro": ["Gluten", "Lait"],
   Diavola: ["Gluten", "Lait"],
-  "Pizza du mois": [
-    "Recette variable — voir affiche ou Facebook",
-  ],
+  "Pizza du mois": ["Gluten", "Lait", "Sulfites"],
   Elio: ["Gluten", "Lait", "Sulfites"],
   "Mia pizza": ["Gluten", "Lait"],
   Bressane: ["Gluten", "Lait"],

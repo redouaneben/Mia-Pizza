@@ -11,6 +11,7 @@ Ce site se met à jour en éditant des **fichiers texte** puis en redéployant (
 | Carte & prix | `data/menu.ts` |
 | Horaires semaine | `data/hours.ts` |
 | Congés / travaux / fermeture | `data/special-hours.ts` |
+| Pizza du mois (photo + recette) | `data/pizza-du-mois.ts` + `IMGS/pizzadumois.jpg` |
 | Allergènes par pizza | `data/allergens.ts` |
 
 ## Modifier un prix ou une pizza
