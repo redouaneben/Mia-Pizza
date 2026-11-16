@@ -27,7 +27,7 @@
 ## Phase 2b — Blueprint (Session C) ✅
 
 - [x] `config/theme.ts`, `config/hero-slides.ts`  
-- [x] `lib/resto-button.ts` (+ alias `lib/mia-button.ts`)  
+- [x] `lib/resto-button.ts`  
 - [x] `lib/fonts.ts`, `lib/page-shell.ts`  
 - [x] Accueil → `components/home/home-page.tsx`, `app/page.tsx` mince  
 - [x] `docs/NEW-CLIENT.md`  

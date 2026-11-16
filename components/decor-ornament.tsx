@@ -1,6 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 
-import { DECOR_FOREST_DARK_FILTER } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 import botaniqueBandeau from "../IMGS/Bandeau décoratif botanique vert.png";
@@ -24,7 +23,7 @@ function DecorOrnament({
         "pointer-events-none h-auto max-w-none select-none",
         className
       )}
-      style={{ filter: DECOR_FOREST_DARK_FILTER }}
+      style={{ filter: "var(--resto-decor-filter)" }}
       sizes="160px"
     />
   );

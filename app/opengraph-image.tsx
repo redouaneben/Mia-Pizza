@@ -20,8 +20,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: `linear-gradient(145deg, ${theme.colors.forest} 0%, ${theme.colors.forestDark} 55%, ${theme.colors.ink} 100%)`,
-          color: theme.colors.white,
+          background: `linear-gradient(145deg, ${theme.colors.brand} 0%, ${theme.colors.brandDark} 55%, ${theme.colors.ink} 100%)`,
+          color: theme.colors.surface,
           fontFamily: "system-ui, sans-serif",
           padding: 48,
           textAlign: "center",
@@ -40,8 +40,8 @@ export default function OpenGraphImage() {
             fontSize: 22,
             padding: "12px 28px",
             borderRadius: 999,
-            background: theme.colors.white,
-            color: theme.colors.forest,
+            background: theme.colors.surface,
+            color: theme.colors.brand,
             fontWeight: 700,
           }}
         >

@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import { buildOpeningHoursSpecification } from "@/data/hours";
 
 /** LocalBusiness / Restaurant pour Google */
 export function buildRestaurantJsonLd() {
@@ -20,9 +21,9 @@ export function buildRestaurantJsonLd() {
       addressLocality: address.addressLocality,
       addressCountry: address.addressCountry,
     },
-    sameAs: [facebook.href],
+    sameAs: facebook.href ? [facebook.href] : [],
     description: siteConfig.seo.description,
-    /** Horaires détaillés : compléter si besoin (OpeningHoursSpecification) */
+    openingHoursSpecification: buildOpeningHoursSpecification(),
     hasMenu: `${url}/#menu`,
   };
 }

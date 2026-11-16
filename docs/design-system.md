@@ -1,6 +1,6 @@
 # Design System — Mia Pizza
 
-**Source de vérité :** `lib/colors.ts` (`C`) et composants dans `app/page.tsx`.
+**Source de vérité :** `config/theme.ts` et composants dans `components/home/home-page.tsx`.
 
 ## 1. Positionnement
 
@@ -51,7 +51,7 @@ Pizzeria de proximité, artisanale ; retranscription **carte imprimée** ; web s
 
 ## 6. Boutons
 
-Variantes dans `lib/mia-button.ts` : surfaces opaques (primary, secondary, command, social, onglets menu).
+Variantes dans `lib/resto-button.ts` : surfaces opaques (primary, secondary, command, social, onglets menu).
 
 ## 7. Backlog UI
 

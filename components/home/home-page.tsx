@@ -11,7 +11,12 @@ import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Info, Phone } from "lucide-react";
 
-import { getOpenStatus, getParisDate, type OpenStatus } from "@/data/hours";
+import {
+  getOpenStatus,
+  getParisDate,
+  HOURS_DISPLAY,
+  type OpenStatus,
+} from "@/data/hours";
 import {
   PIZZAS_CREME,
   PIZZAS_TOMATE,
@@ -32,7 +37,6 @@ import { PizzaDuMoisCard } from "@/components/home/pizza-du-mois-card";
 import { PizzaAllergenPanel } from "@/components/pizza-allergen-panel";
 import { HeaderBotaniqueBandeau, HerbPair } from "@/components/decor-ornament";
 import { getAddressLines, siteConfig } from "@/config/site";
-import { C } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 const PHONE_DISPLAY = siteConfig.phone.display;
@@ -65,9 +69,9 @@ function PaperTexture({ className }: { className?: string }) {
       className={cn("pointer-events-none absolute inset-0 opacity-[0.55]", className)}
       style={{
         backgroundImage: `
-          linear-gradient(90deg, ${C.ink}06 1px, transparent 1px),
-          linear-gradient(${C.ink}05 1px, transparent 1px),
-          radial-gradient(ellipse at 30% 20%, ${C.sage}12, transparent 50%)
+          linear-gradient(90deg, color-mix(in srgb, var(--resto-ink) 6%, transparent) 1px, transparent 1px),
+          linear-gradient(color-mix(in srgb, var(--resto-ink) 5%, transparent) 1px, transparent 1px),
+          radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--resto-accent) 12%, transparent), transparent 50%)
         `,
         backgroundSize: "48px 48px, 48px 48px, 100% 100%",
       }}
@@ -79,7 +83,7 @@ const pillTypography =
   "rounded-full px-10 py-3.5 text-center text-base font-extrabold uppercase tracking-[0.14em] sm:text-lg lg:px-12 lg:py-4 lg:text-xl";
 
 const sectionTitleTypography =
-  "text-center text-xl font-extrabold uppercase tracking-[0.12em] text-[#20543B] sm:text-2xl lg:text-3xl xl:text-[2rem] xl:leading-tight";
+  "text-center text-xl font-extrabold uppercase tracking-[0.12em] text-[var(--resto-brand)] sm:text-2xl lg:text-3xl xl:text-[2rem] xl:leading-tight";
 
 /** Titre de section (texte seul, non cliquable) */
 function Ribbon({
@@ -136,8 +140,8 @@ function LogoLockup({
   onDark?: boolean;
   showTagline?: boolean;
 }) {
-  const ink = onDark ? "text-[#FDFCF8]" : "text-[#20543B]";
-  const bar = onDark ? "bg-[#FDFCF8]" : "bg-[#20543B]";
+  const ink = onDark ? "text-[var(--resto-surface)]" : "text-[var(--resto-brand)]";
+  const bar = onDark ? "bg-[var(--resto-surface)]" : "bg-[var(--resto-brand)]";
   return (
     <div className="text-center">
       <p
@@ -230,7 +234,7 @@ function HeroSlider({
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#27251F]">
+    <div className="absolute inset-0 overflow-hidden bg-[var(--resto-ink)]">
       {slides.map((slide, i) => (
         <div
           key={`preload-${slide.src.src}`}
@@ -282,8 +286,8 @@ function HeroSlider({
         </motion.div>
       )}
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#27251F]/65 via-[#27251F]/35 to-[#27251F]/55" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-[#F1EFE5] to-transparent sm:h-36" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[var(--resto-hero-overlay)]/65 via-[var(--resto-hero-overlay)]/35 to-[var(--resto-hero-overlay)]/55" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-[var(--resto-paper)] to-transparent sm:h-36" />
     </div>
   );
 }
@@ -292,7 +296,7 @@ function SpecialNoticeBanner({ message }: { message: string }) {
   return (
     <div
       role="note"
-      className="relative z-30 border-b border-[#20543B]/20 bg-[#20543B] px-4 py-3 text-center text-sm font-semibold leading-snug text-[#FDFCF8] sm:text-base"
+      className="relative z-30 border-b border-[var(--resto-brand)]/20 bg-[var(--resto-brand)] px-4 py-3 text-center text-sm font-semibold leading-snug text-[var(--resto-surface)] sm:text-base"
     >
       {message}
     </div>
@@ -330,8 +334,8 @@ function HeroStatusCompact({
       className={cn(
         "relative flex min-w-0 max-w-full items-center gap-2 rounded-full py-1.5 pl-2.5 pr-4 shadow-md sm:gap-2.5 sm:py-2 sm:pl-3.5 sm:pr-5",
         isOpen
-          ? "bg-[#20543B] text-white"
-          : "bg-[#E8E6E0] text-[#27251F]/60 ring-1 ring-[#27251F]/10",
+          ? "bg-[var(--resto-brand)] text-white"
+          : "bg-[var(--resto-status-closed)] text-[var(--resto-ink)]/60 ring-1 ring-[var(--resto-ink)]/10",
         className
       )}
     >
@@ -339,21 +343,25 @@ function HeroStatusCompact({
         {mounted && isOpen && (
           <span
             className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-80"
-            style={{ backgroundColor: C.sage }}
+            style={{ backgroundColor: "var(--resto-accent)" }}
           />
         )}
         <span
           className={cn(
             "relative inline-flex h-full w-full rounded-full ring-2",
-            !mounted && "bg-[#27251F]/20 ring-transparent",
+            !mounted && "bg-[var(--resto-ink)]/20 ring-transparent",
             mounted &&
               isOpen &&
-              "ring-[#20543B]/40 shadow-[0_0_8px_rgba(113,154,118,0.85)]",
+              "ring-[var(--resto-brand)]/40 shadow-[0_0_8px_color-mix(in_srgb,var(--resto-accent)_85%,transparent)]",
             mounted &&
               !isOpen &&
-              "bg-[#27251F]/30 ring-transparent"
+              "bg-[var(--resto-ink)]/30 ring-transparent"
           )}
-          style={mounted && isOpen ? { backgroundColor: C.sage } : undefined}
+          style={
+            mounted && isOpen
+              ? { backgroundColor: "var(--resto-accent)" }
+              : undefined
+          }
         />
       </span>
       <div className="relative min-w-0 text-left leading-tight">
@@ -375,7 +383,7 @@ function HeroStatusCompact({
               emphasizeSubline
                 ? "line-clamp-2 whitespace-normal sm:max-w-[14rem]"
                 : "truncate sm:max-w-none sm:whitespace-normal",
-              isOpen ? "text-white/90" : "text-[#27251F]/55"
+              isOpen ? "text-white/90" : "text-[var(--resto-ink)]/55"
             )}
             title={subline}
           >
@@ -389,14 +397,14 @@ function HeroStatusCompact({
 
 function PriceCell({ value }: { value: number | null }) {
   return (
-    <span className="whitespace-nowrap tabular-nums text-lg font-extrabold text-[#27251F] sm:text-xl lg:text-2xl">
+    <span className="whitespace-nowrap tabular-nums text-lg font-extrabold text-[var(--resto-ink)] sm:text-xl lg:text-2xl">
       {value === null ? "Ø" : formatPrice(value)}
     </span>
   );
 }
 
 const priceLabelClass =
-  "text-right text-xs font-extrabold uppercase tracking-wide text-[#27251F]/60 sm:text-sm";
+  "text-right text-xs font-extrabold uppercase tracking-wide text-[var(--resto-ink)]/60 sm:text-sm";
 
 /** Aligné sur la grille prix de PizzaRow — Petite puis Grande */
 const MENU_PRICE_GRID =
@@ -407,7 +415,7 @@ function MenuPriceHeader({ className }: { className?: string }) {
     <div
       className={cn(
         MENU_PRICE_GRID,
-        "mb-4 hidden border-b border-[#27251F]/20 pb-3 sm:grid",
+        "mb-4 hidden border-b border-[var(--resto-ink)]/20 pb-3 sm:grid",
         className
       )}
     >
@@ -420,7 +428,7 @@ function MenuPriceHeader({ className }: { className?: string }) {
 
 function MenuPriceHeaderMobile() {
   return (
-    <div className="mb-4 flex justify-end gap-8 border-b border-[#27251F]/20 pb-3 sm:hidden">
+    <div className="mb-4 flex justify-end gap-8 border-b border-[var(--resto-ink)]/20 pb-3 sm:hidden">
       <span className={priceLabelClass}>Petite</span>
       <span className={priceLabelClass}>Grande</span>
     </div>
@@ -435,23 +443,23 @@ function PizzaRow({
   onAllergenClick: (pizza: PizzaItem) => void;
 }) {
   return (
-    <article className="border-b border-[#27251F]/12 py-5 last:border-b-0 sm:py-6 lg:py-8">
+    <article className="border-b border-[var(--resto-ink)]/12 py-5 last:border-b-0 sm:py-6 lg:py-8">
       <div className={MENU_PRICE_GRID}>
         <div className="min-w-0 space-y-2 lg:space-y-2.5">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="min-w-0 text-xl font-extrabold leading-snug text-[#27251F] sm:text-2xl lg:text-[1.75rem]">
+            <h3 className="min-w-0 text-xl font-extrabold leading-snug text-[var(--resto-ink)] sm:text-2xl lg:text-[1.75rem]">
               {pizza.name}
             </h3>
             <button
               type="button"
               onClick={() => onAllergenClick(pizza)}
               aria-label={`Allergènes — ${pizza.name}`}
-              className="mt-0.5 shrink-0 rounded-full p-1.5 text-[#20543B] transition hover:bg-[#20543B]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#20543B]/45"
+              className="mt-0.5 shrink-0 rounded-full p-1.5 text-[var(--resto-brand)] transition hover:bg-[var(--resto-brand)]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--resto-brand)]/45"
             >
               <Info className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={2.25} />
             </button>
           </div>
-          <p className="text-lg font-medium leading-relaxed text-[#27251F]/90 sm:text-xl lg:text-[1.2rem] lg:leading-relaxed">
+          <p className="text-lg font-medium leading-relaxed text-[var(--resto-ink)]/90 sm:text-xl lg:text-[1.2rem] lg:leading-relaxed">
             {pizza.ingredients}
           </p>
         </div>
@@ -520,9 +528,8 @@ export default function HomePage() {
       className={cn(
         sans.variable,
         sans.className,
-        "relative min-h-screen pb-28 text-base font-medium text-[#27251F] sm:text-lg lg:text-xl md:pb-16"
+        "relative min-h-screen bg-[var(--resto-paper)] pb-28 text-base font-medium text-[var(--resto-ink)] sm:text-lg lg:text-xl md:pb-16"
       )}
-      style={{ backgroundColor: C.paper }}
     >
       <PaperTexture />
 
@@ -592,7 +599,7 @@ export default function HomePage() {
             Adresse & horaires
             <span
               aria-hidden
-              className="absolute -bottom-0.5 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#719A76] transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-x-100"
+              className="absolute -bottom-0.5 left-0 h-0.5 w-full origin-left scale-x-0 bg-[var(--resto-accent)] transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-x-100"
             />
           </a>
         </div>
@@ -605,7 +612,7 @@ export default function HomePage() {
         <div className={PAGE_SHELL}>
           <div className="mb-10 text-center lg:mb-14">
             <Ribbon>Carte complète</Ribbon>
-            <p className="mx-auto mt-8 max-w-3xl text-lg font-medium leading-relaxed text-[#27251F]/90 sm:text-xl lg:mt-10 lg:text-[1.35rem]">
+            <p className="mx-auto mt-8 max-w-3xl text-lg font-medium leading-relaxed text-[var(--resto-ink)]/90 sm:text-xl lg:mt-10 lg:text-[1.35rem]">
               Retranscription fidèle de la carte : format{" "}
               <strong className="font-bold">Petite</strong> et{" "}
               <strong className="font-bold">Grande</strong>. Le symbole{" "}
@@ -613,7 +620,7 @@ export default function HomePage() {
               prix petit format sur l&apos;imprimé (six dernières pizzas
               tomate). L&apos;icône{" "}
               <Info
-                className="inline h-[1.1em] w-[1.1em] align-[-0.15em] text-[#20543B]"
+                className="inline h-[1.1em] w-[1.1em] align-[-0.15em] text-[var(--resto-brand)]"
                 strokeWidth={2.25}
                 aria-hidden
               />{" "}
@@ -623,7 +630,7 @@ export default function HomePage() {
 
           <div
             id={menuTab === "tomate" ? "menu-tomate" : "menu-creme"}
-            className="rounded-[2rem] border border-[#27251F]/10 bg-[#FDFCF8]/95 p-6 shadow-sm sm:p-10 lg:rounded-[2.5rem] lg:p-12 xl:p-14"
+            className="rounded-[2rem] border border-[var(--resto-ink)]/10 bg-[var(--resto-surface)]/95 p-6 shadow-sm sm:p-10 lg:rounded-[2.5rem] lg:p-12 xl:p-14"
           >
             <div className="mb-10 flex flex-wrap items-center justify-center gap-4 lg:mb-12 lg:gap-6">
               <MenuCategoryRibbon
@@ -679,11 +686,11 @@ export default function HomePage() {
 
           {/* Suppléments & Facebook (repise volet 2) */}
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:mt-16 lg:gap-10">
-            <div className="rounded-[2rem] border border-[#27251F]/10 bg-[#FDFCF8]/95 p-8 shadow-sm lg:p-10">
+            <div className="rounded-[2rem] border border-[var(--resto-ink)]/10 bg-[var(--resto-surface)]/95 p-8 shadow-sm lg:p-10">
               <Ribbon className="mb-5">Suppléments</Ribbon>
               <table className="w-full text-lg font-semibold sm:text-xl">
                 <tbody>
-                  <tr className="border-b border-[#27251F]/10">
+                  <tr className="border-b border-[var(--resto-ink)]/10">
                     <td className="py-4">Ingrédient supplémentaire</td>
                     <td className="py-4 text-right tabular-nums font-extrabold">
                       1,00 €
@@ -697,7 +704,7 @@ export default function HomePage() {
                   </tr>
                 </tbody>
               </table>
-              <p className="mt-6 text-lg font-medium text-[#27251F]/85 sm:text-xl">
+              <p className="mt-6 text-lg font-medium text-[var(--resto-ink)]/85 sm:text-xl">
                 Allergènes : informations à consulter sur place (tableau
                 affiché en boutique).
               </p>
@@ -710,17 +717,16 @@ export default function HomePage() {
       {/* ——— Adresse & horaires ——— */}
       <section
         id="infos"
-        className="relative py-16 sm:py-20 lg:py-24"
-        style={{ backgroundColor: `${C.paper}` }}
+        className="relative bg-[var(--resto-paper)] py-16 sm:py-20 lg:py-24"
       >
         <div className={PAGE_SHELL}>
           <Ribbon className="mb-10 lg:mb-14">Adresse & horaires</Ribbon>
 
-          <div className="grid gap-10 rounded-[2rem] border border-[#27251F]/10 bg-[#FDFCF8]/95 p-8 shadow-sm sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
+          <div className="grid gap-10 rounded-[2rem] border border-[var(--resto-ink)]/10 bg-[var(--resto-surface)]/95 p-8 shadow-sm sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
             <div className="space-y-8">
               <LogoLockup size="sm" />
               <div className="space-y-2 text-lg sm:text-xl">
-                <p className="font-bold uppercase tracking-[0.12em] text-[#20543B]">
+                <p className="font-bold uppercase tracking-[0.12em] text-[var(--resto-brand)]">
                   {siteConfig.name} — {siteConfig.footerLine}
                 </p>
                 <p>{ADDRESS_LINE_1}</p>
@@ -728,21 +734,24 @@ export default function HomePage() {
               </div>
               <a
                 href={PHONE_HREF}
-                className="inline-flex items-center gap-2 text-xl font-extrabold text-[#20543B] sm:text-2xl"
+                className="inline-flex items-center gap-2 text-xl font-extrabold text-[var(--resto-brand)] sm:text-2xl"
               >
                 <Phone className="h-5 w-5" />
                 {PHONE_DISPLAY}
               </a>
-              <div className="border-t border-[#27251F]/12 pt-6 text-lg sm:text-xl">
-                <p className="mb-2 font-bold text-[#20543B]">
+              <div className="border-t border-[var(--resto-ink)]/12 pt-6 text-lg sm:text-xl">
+                <p className="mb-2 font-bold text-[var(--resto-brand)]">
                   Horaires affichés sur la carte
                 </p>
-                <ul className="space-y-2 text-[#27251F]/90">
-                  <li>Mardi — 11 h à 14 h</li>
-                  <li>
-                    Du mercredi au samedi — 11 h à 14 h et 18 h à 21 h 45
-                  </li>
-                  <li className="text-[#27251F]/65">Lundi & dimanche : fermé</li>
+                <ul className="space-y-2 text-[var(--resto-ink)]/90">
+                  {HOURS_DISPLAY.map((line) => (
+                    <li
+                      key={line.text}
+                      className={line.muted ? "text-[var(--resto-ink)]/65" : undefined}
+                    >
+                      {line.text}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -751,7 +760,7 @@ export default function HomePage() {
               <iframe
                 title={`${siteConfig.name} — ${siteConfig.address.addressLocality}`}
                 src={MAP_EMBED}
-                className="min-h-[16rem] h-full w-full bg-[#F1EFE5] sm:min-h-[20rem]"
+                className="min-h-[16rem] h-full w-full bg-[var(--resto-paper)] sm:min-h-[20rem]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -761,14 +770,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer
-        className="relative py-10 pb-28 sm:py-12 md:pb-12"
-        style={{ backgroundColor: C.paper }}
-      >
+      <footer className="relative bg-[var(--resto-paper)] py-10 pb-28 sm:py-12 md:pb-12">
         <div className={PAGE_SHELL}>
           <HerbPair size="sm" className="mb-8 sm:mb-10" />
-          <div className="text-center text-sm font-medium text-[#27251F]/85 sm:text-base">
-            <p className="font-extrabold uppercase tracking-[0.14em] text-[#20543B]">
+          <div className="text-center text-sm font-medium text-[var(--resto-ink)]/85 sm:text-base">
+            <p className="font-extrabold uppercase tracking-[0.14em] text-[var(--resto-brand)]">
               {siteConfig.name} — {siteConfig.footerLine}
             </p>
             <p className="mt-2">{ADDRESS_LINE_2}</p>
@@ -778,44 +784,46 @@ export default function HomePage() {
             >
               <a
                 href="#menu"
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+                className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
               >
                 Carte
               </a>
               <a
                 href="#infos"
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+                className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
               >
                 Adresse & horaires
               </a>
               <a
                 href={PHONE_HREF}
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+                className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
               >
                 {PHONE_DISPLAY}
               </a>
-              <a
-                href={FACEBOOK_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
-              >
-                Facebook
-              </a>
+              {FACEBOOK_HREF ? (
+                <a
+                  href={FACEBOOK_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
+                >
+                  {siteConfig.facebook.label}
+                </a>
+              ) : null}
               <a
                 href="/mentions-legales"
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+                className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
               >
                 Mentions légales
               </a>
               <a
                 href="/politique-de-confidentialite"
-                className="font-semibold text-[#20543B] underline-offset-4 hover:underline"
+                className="font-semibold text-[var(--resto-brand)] underline-offset-4 hover:underline"
               >
                 Confidentialité
               </a>
             </nav>
-            <p className="mt-6 text-xs text-[#27251F]/55 sm:text-sm">
+            <p className="mt-6 text-xs text-[var(--resto-ink)]/55 sm:text-sm">
               © 2026 {siteConfig.name}
             </p>
           </div>

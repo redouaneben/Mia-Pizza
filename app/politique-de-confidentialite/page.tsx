@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PolitiqueConfidentialitePage() {
   return (
     <LegalPageShell title="Politique de confidentialité">
-      <p className="text-sm text-[#27251F]/65">
+      <p className="text-sm text-[var(--resto-ink)]/65">
         Dernière mise à jour : {legalConfig.lastUpdated}
       </p>
 

@@ -53,7 +53,7 @@ export function PizzaAllergenPanel({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#27251F]/45 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[100] bg-[var(--resto-ink)]/45 backdrop-blur-[2px]"
             onClick={onClose}
           />
           <motion.div
@@ -66,19 +66,19 @@ export function PizzaAllergenPanel({
             transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             className={cn(
               "fixed z-[101] flex w-full flex-col overflow-hidden",
-              "border border-[#27251F]/12 bg-[#FDFCF8] shadow-xl",
+              "border border-[var(--resto-ink)]/12 bg-[var(--resto-surface)] shadow-xl",
               "bottom-0 left-0 right-0 rounded-t-[1.75rem]",
               "md:bottom-auto md:left-1/2 md:top-1/2 md:max-w-lg md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[2rem] lg:max-w-xl"
             )}
           >
             <div className="flex items-start justify-between gap-4 px-6 pb-5 pt-6 sm:px-8 md:pt-8">
               <div className="min-w-0 pr-2">
-                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#20543B] sm:text-sm">
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--resto-brand)] sm:text-sm">
                   Allergènes
                 </p>
                 <h2
                   id="allergen-dialog-title"
-                  className="mt-2 text-2xl font-extrabold leading-snug text-[#27251F] sm:text-3xl"
+                  className="mt-2 text-2xl font-extrabold leading-snug text-[var(--resto-ink)] sm:text-3xl"
                 >
                   {pizza.name}
                 </h2>
@@ -103,18 +103,18 @@ export function PizzaAllergenPanel({
                 {getPizzaAllergenTags(pizza.name).map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full border-2 border-[#20543B]/25 bg-[#20543B]/10 px-5 py-2.5 text-base font-bold text-[#20543B] sm:text-lg"
+                    className="rounded-full border-2 border-[var(--resto-brand)]/25 bg-[var(--resto-brand)]/10 px-5 py-2.5 text-base font-bold text-[var(--resto-brand)] sm:text-lg"
                   >
                     {tag}
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm leading-relaxed text-[#27251F]/60 sm:text-base">
+              <p className="mt-6 text-sm leading-relaxed text-[var(--resto-ink)]/60 sm:text-base">
                 {ALLERGEN_DISCLAIMER}
               </p>
             </div>
 
-            <div className="border-t border-[#27251F]/10 px-6 py-5 md:hidden">
+            <div className="border-t border-[var(--resto-ink)]/10 px-6 py-5 md:hidden">
               <button
                 ref={mobileCloseRef}
                 type="button"

@@ -25,16 +25,16 @@ export function CookieConsentBanner() {
       role="dialog"
       aria-label="Information cookies"
       className={cn(
-        "fixed inset-x-0 bottom-0 z-[60] border-t border-[#27251F]/10 bg-[#FDFCF8]/95 p-4 shadow-lg",
+        "fixed inset-x-0 bottom-0 z-[60] border-t border-[var(--resto-ink)]/10 bg-[var(--resto-surface)]/95 p-4 shadow-lg",
         "bottom-20 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:bottom-4",
         "md:mx-auto md:max-w-2xl md:rounded-2xl md:border"
       )}
     >
-      <p className="text-center text-sm leading-snug text-[#27251F]/90 sm:text-base">
+      <p className="text-center text-sm leading-snug text-[var(--resto-ink)]/90 sm:text-base">
         Carte Google Maps et hébergement peuvent déposer des cookies ou traceurs.{" "}
         <Link
           href="/politique-de-confidentialite"
-          className="font-semibold text-[#20543B] underline-offset-2 hover:underline"
+          className="font-semibold text-[var(--resto-brand)] underline-offset-2 hover:underline"
         >
           Politique de confidentialité
         </Link>
@@ -51,7 +51,7 @@ export function CookieConsentBanner() {
             }
             setVisible(false);
           }}
-          className="rounded-full bg-[#20543B] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#1a4530]"
+          className="rounded-full bg-[var(--resto-brand)] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--resto-brand-dark)]"
         >
           J&apos;ai compris
         </button>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
-import { C } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 const SHELL =
@@ -16,11 +15,8 @@ export function LegalPageShell({
   children: ReactNode;
 }) {
   return (
-    <div
-      className="min-h-screen pb-16 text-[#27251F]"
-      style={{ backgroundColor: C.paper }}
-    >
-      <header className="border-b border-[#27251F]/10 bg-[#FDFCF8]/90">
+    <div className="min-h-screen bg-[var(--resto-paper)] pb-16 text-[var(--resto-ink)]">
+      <header className="border-b border-[var(--resto-ink)]/10 bg-[var(--resto-surface)]/90">
         <div
           className={cn(
             SHELL,
@@ -29,25 +25,25 @@ export function LegalPageShell({
         >
           <Link
             href="/"
-            className="text-sm font-bold uppercase tracking-wide text-[#20543B] underline-offset-4 hover:underline"
+            className="text-sm font-bold uppercase tracking-wide text-[var(--resto-brand)] underline-offset-4 hover:underline"
           >
             ← {siteConfig.name}
           </Link>
-          <p className="text-sm font-medium text-[#27251F]/70">
+          <p className="text-sm font-medium text-[var(--resto-ink)]/70">
             {siteConfig.phone.display}
           </p>
         </div>
       </header>
 
       <main className={SHELL}>
-        <h1 className="text-2xl font-extrabold tracking-tight text-[#20543B] sm:text-3xl">
+        <h1 className="text-2xl font-extrabold tracking-tight text-[var(--resto-brand)] sm:text-3xl">
           {title}
         </h1>
         <article
           className={cn(
-            "prose-legal mt-8 space-y-6 text-base leading-relaxed text-[#27251F]/90",
-            "sm:text-lg [&_h2]:mt-10 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-[#20543B]",
-            "[&_a]:font-semibold [&_a]:text-[#20543B] [&_a]:underline-offset-4 hover:[&_a]:underline",
+            "prose-legal mt-8 space-y-6 text-base leading-relaxed text-[var(--resto-ink)]/90",
+            "sm:text-lg [&_h2]:mt-10 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-[var(--resto-brand)]",
+            "[&_a]:font-semibold [&_a]:text-[var(--resto-brand)] [&_a]:underline-offset-4 hover:[&_a]:underline",
             "[&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5"
           )}
         >
@@ -55,19 +51,19 @@ export function LegalPageShell({
         </article>
 
         <nav
-          className="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-[#27251F]/10 pt-8 text-sm font-semibold"
+          className="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-[var(--resto-ink)]/10 pt-8 text-sm font-semibold"
           aria-label="Autres pages légales"
         >
-          <Link href="/mentions-legales" className="text-[#20543B] hover:underline">
+          <Link href="/mentions-legales" className="text-[var(--resto-brand)] hover:underline">
             Mentions légales
           </Link>
           <Link
             href="/politique-de-confidentialite"
-            className="text-[#20543B] hover:underline"
+            className="text-[var(--resto-brand)] hover:underline"
           >
             Politique de confidentialité
           </Link>
-          <Link href="/" className="text-[#27251F]/70 hover:underline">
+          <Link href="/" className="text-[var(--resto-ink)]/70 hover:underline">
             Accueil
           </Link>
         </nav>

@@ -9,7 +9,7 @@ Ce site se met à jour en éditant des **fichiers texte** puis en redéployant (
 | Nom, tel, adresse, Facebook, SEO | `config/site.ts` |
 | SIRET, email contact, gérant | `config/legal.ts` |
 | Carte & prix | `data/menu.ts` |
-| Horaires semaine | `data/hours.ts` |
+| Horaires semaine | `data/hours.ts` (`WEEK_SLOTS` + `HOURS_DISPLAY`) |
 | Congés / travaux / fermeture | `data/special-hours.ts` |
 | Pizza du mois (photo + recette) | `data/pizza-du-mois.ts` + `IMGS/pizzadumois.jpg` |
 | Allergènes par pizza | `data/allergens.ts` |
